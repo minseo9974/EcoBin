@@ -28,7 +28,7 @@ void loop(){
     Serial.println(ii);
     delay(5);
   }
-  delay(500);
+  delay(3000);
   for(int i = 120; i >= 0; i--)
   {
     servo.write(i);
