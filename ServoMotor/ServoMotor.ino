@@ -19,24 +19,28 @@ void setup(){
 }
 
 void loop(){
-  for(int ii=0; ii < 120; ii++)
-  {
-    servo.write(ii);
-    servo2.write(ii);
-    servo3.write(ii);
-    servo4.write(ii);
-    Serial.println(ii);
-    delay(5);
+  int result = Serial.read();
+  // 결과값이 0이면 can의 개폐칸 작동
+  if(result==0){ 
+    for(int ii=0; ii < 120; ii++)
+    {
+     servo.write(ii);
+     servo2.write(ii);
+     Serial.println(can);
+      delay(5);
+    }
+   delay(3000);
+
   }
-  delay(3000);
-  for(int i = 120; i >= 0; i--)
-  {
-    servo.write(i);
-    servo2.write(i);
-    servo3.write(i);
-    servo4.write(i);
-    Serial.println(i);
-    delay(5);
-  }
-  delay(500);
+  // 결과값이 1이면 plastic의 개폐칸 작동
+  else if(result==1){
+    for(int i = 120; i >= 0; i--)
+    {
+      servo3.write(i);
+      servo4.write(i);
+      Serial.println(plastic);
+      delay(5);
+    }
+    delay(3000);
+  }  
 }
